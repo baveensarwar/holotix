@@ -333,12 +333,13 @@
   let hasGyro=false;
   let sceneScale=1;
 
-  // Responsive scale: fit 640x880 scene into the viewport
+  // Responsive scale: fit scene into the viewport with padding
   function calcScale(){
     const vw=window.innerWidth;
     const vh=window.innerHeight;
-    const sx=vw/680;  // 640 + small margin
-    const sy=vh/920;  // 880 + small margin
+    const isMobile = vw < 600;
+    const sx=vw / (isMobile ? 860 : 680);  // tighter padding on small screens
+    const sy=vh / (isMobile ? 1100 : 920);
     sceneScale=Math.min(sx,sy,1); // never upscale past 1
   }
   calcScale();
